@@ -11,7 +11,34 @@
 </head>
 <body>
   <div id="app">
+    <!-- <form v-on:submit.prevent="calculateNewAmount(); getCurrency();">
+      <label for="amount">Enter an amount to convert</label>
+      <input type="number" v-model="amount" step="0.01" required>
+      <select v-model="selectedRate" required>
+        <option v-for="(rate, key) in exchangeData.rates" :value="{rate: rate, currency:key}">{{key}}</option>
+      </select><br>
+      <input type="radio" name="currency" value="fromEuros" v-model="direction" required>From Euros
+      <input type="radio" name="currency" value="toEuros" v-model="direction" required>To Euros
+      <input type="submit" value="Calculate">
+    </form>
+    <p v-if="answer && direction === 'fromEuros'">{{amount}} Euros = {{answer}} {{currency}}</p>
+    <p v-if="answer && direction === 'toEuros'">{{amount}} {{currency}} = {{answer}} Euros </p>
+<br><br><br><hr><br><br><br> -->
 
+    <form v-on:submit.prevent="convert(); getCurrency();">
+      <label for="amount">Enter an amount to convert</label>
+      <input type="number" v-model="amount" step="0.01" required>
+      <p>Convert From </p>
+      <select v-model="selectedRate" required>
+        <option v-for="(rate, key) in exchangeData.rates" :value="{rate: rate, currency:key}">{{key}}</option>
+      </select><br>
+      <p>to </p>
+      <select v-model="desiredRate" required>
+        <option v-for="(rate, key) in exchangeData.rates" :value="{rate: rate, currency:key}">{{key}}</option>
+      </select><br>
+      <input type="submit" value="Calculate">
+    </form>
+    <p v-if="answer">The Answer is {{answer}}</p>
   </div>
 </body>
 </html>
